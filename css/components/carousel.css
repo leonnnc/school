@@ -245,3 +245,98 @@
     bottom: 4.5rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Overlay de bienvenida sobre el carrusel
+   -------------------------------------------------------------------------- */
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Gradiente oscuro en la mitad inferior para legibilidad */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 60%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  pointer-events: none; /* Permite clicks a los botones del carrusel */
+}
+
+.carousel-overlay-content {
+  pointer-events: auto; /* Reactiva clicks para el botón CTA */
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  max-width: 800px;
+  width: 100%;
+  color: #ffffff;
+  /* Subir un poco para dejar espacio al indicador de scroll */
+  margin-bottom: 80px;
+}
+
+.carousel-overlay-content .welcome-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.15;
+}
+
+.carousel-overlay-content .welcome-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-medium);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: var(--spacing-md);
+}
+
+.carousel-overlay-content .welcome-paragraph {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.7;
+}
+
+.carousel-overlay-content .welcome-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* Botón CTA grande */
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-full);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.btn-lg:hover,
+.btn-lg:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive — móvil */
+@media (max-width: 767.98px) {
+  .carousel-overlay-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-bottom: 60px;
+  }
+
+  .carousel-overlay-content .welcome-paragraph {
+    display: none; /* Ocultar párrafo en móvil para no saturar */
+  }
+}

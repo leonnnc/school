@@ -17,27 +17,30 @@
 </head>
 <body>
 
-  <!-- Carrusel Principal -->
+  <!-- Carrusel Principal con overlay de bienvenida -->
   <section id="inicio" class="carousel-section" aria-label="Carrusel de imágenes de la escuela">
     <div id="carousel-container" class="carousel-container">
       <!-- Renderizado dinámico por carousel.js -->
     </div>
-  </section>
 
-  <!-- Sección de Bienvenida -->
-  <section id="bienvenida" class="welcome-section" aria-labelledby="welcome-title">
-    <div class="container">
-      <h1 id="welcome-title" class="welcome-title">Bienvenido a Nuestra Escuela</h1>
-      <h2 class="welcome-subtitle">Formando el futuro con excelencia académica</h2>
-      <p class="welcome-paragraph">
-        Somos una institución educativa comprometida con el desarrollo integral de nuestros alumnos,
-        ofreciendo programas académicos de calidad impartidos por maestros altamente capacitados.
-      </p>
-      <div class="welcome-actions">
-        <a href="#registro" class="btn btn-primary" id="btn-registro">Regístrate en un Curso</a>
+    <!-- Overlay de bienvenida sobre el carrusel -->
+    <div class="carousel-overlay" aria-labelledby="welcome-title">
+      <div class="carousel-overlay-content">
+        <h1 id="welcome-title" class="welcome-title">Bienvenido a Nuestra Escuela</h1>
+        <h2 class="welcome-subtitle">Formando el futuro con excelencia académica</h2>
+        <p class="welcome-paragraph">
+          Somos una institución educativa comprometida con el desarrollo integral de nuestros alumnos,
+          ofreciendo programas académicos de calidad impartidos por maestros altamente capacitados.
+        </p>
+        <div class="welcome-actions">
+          <a href="#registro" class="btn btn-secondary btn-lg" id="btn-registro">Regístrate en un Curso</a>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Sección de Bienvenida (oculta — el contenido está en el overlay del carrusel) -->
+  <section id="bienvenida" style="display:none;" aria-hidden="true"></section>
 
   <!-- Scroll Horizontal de Fotos -->
   <section id="galeria-fotos" class="scroll-horizontal-section" aria-label="Galería de fotos de la escuela">
