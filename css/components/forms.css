@@ -119,31 +119,138 @@
 }
 
 /* --------------------------------------------------------------------------
-   Sección de registro con Google Form embebido
+   Sección de registro — CTA
    -------------------------------------------------------------------------- */
 .registration-section {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-muted);
 }
 
-.google-form-wrapper {
+.registration-cta {
+  text-align: center;
+}
+
+.registration-cta-text {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xl);
+  font-size: var(--font-size-lg);
+}
+
+/* Formulario dentro del modal — una columna */
+.registration-form-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.registration-form-modal .form-group {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Modal de registro con Google Form
+   -------------------------------------------------------------------------- */
+.registro-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: var(--z-modal-backdrop);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  backdrop-filter: blur(3px);
+}
+
+.registro-modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.registro-modal {
   background-color: var(--color-bg-white);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.google-form-wrapper iframe {
-  display: block;
+  box-shadow: var(--shadow-xl);
   width: 100%;
-  min-height: 900px;
-  border: none;
+  max-width: 560px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modal-slide-in 0.25s ease-out;
 }
 
+@keyframes modal-slide-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.registro-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.registro-modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.registro-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  line-height: 1;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.registro-modal-close:hover,
+.registro-modal-close:focus-visible {
+  color: var(--color-text);
+  background-color: var(--color-bg-muted);
+}
+
+.registro-modal-close:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.registro-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+}
+
+.registro-modal-body .registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.registro-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Responsive móvil */
 @media (max-width: 767.98px) {
-  .google-form-wrapper iframe {
-    min-height: 1100px;
+  .registro-modal {
+    height: 95vh;
+    max-height: none;
+    border-radius: var(--border-radius-md);
   }
 }

@@ -33,13 +33,15 @@
           ofreciendo programas académicos de calidad impartidos por maestros altamente capacitados.
         </p>
         <div class="welcome-actions">
-          <a href="#registro" class="btn btn-secondary btn-lg" id="btn-registro">Regístrate en un Curso</a>
+          <button type="button" class="btn btn-secondary btn-lg" id="btn-registro">
+            Regístrate en un Curso
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sección de Bienvenida (oculta — el contenido está en el overlay del carrusel) -->
+  <!-- Sección de Bienvenida (oculta — contenido en overlay del carrusel) -->
   <section id="bienvenida" style="display:none;" aria-hidden="true"></section>
 
   <!-- Scroll Horizontal de Fotos -->
@@ -79,24 +81,35 @@
     </div>
   </section>
 
-  <!-- Formulario de Registro — Google Form embebido -->
+  <!-- Sección de Registro — botón que abre el modal -->
   <section id="registro" class="registration-section" aria-labelledby="registration-title">
-    <div class="container">
-      <h2 id="registration-title" class="section-title">Regístrate en un Curso</h2>
-      <div class="google-form-wrapper">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSdiz7ZzbcqFqhT1ZwVz6NtbzgAyhR8fHUJcm1b0irHNadcfag/viewform?embedded=true"
-          width="100%"
-          height="900"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          title="Formulario de registro a cursos"
-          loading="lazy"
-        >Cargando formulario…</iframe>
-      </div>
+    <div class="container registration-cta">
+      <h2 id="registration-title" class="section-title">¿Listo para unirte?</h2>
+      <p class="registration-cta-text">
+        Completa el formulario y nos pondremos en contacto contigo.
+      </p>
+      <button id="btn-open-registro-modal" class="btn btn-primary btn-lg" type="button">
+        Regístrate en un Curso
+      </button>
     </div>
   </section>
+
+  <!-- Modal con formulario de registro del sitio -->
+  <div id="registro-modal" class="registro-modal-backdrop" role="dialog"
+       aria-modal="true" aria-labelledby="registro-modal-title" hidden>
+    <div class="registro-modal">
+      <div class="registro-modal-header">
+        <h2 id="registro-modal-title" class="registro-modal-title">Regístrate en un Curso</h2>
+        <button id="btn-close-registro-modal" class="registro-modal-close"
+                type="button" aria-label="Cerrar formulario">✕</button>
+      </div>
+      <div class="registro-modal-body">
+        <form id="registration-form" class="registration-form-modal" novalidate>
+          <!-- Renderizado dinámico por registration-form.js -->
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer id="footer" class="site-footer" role="contentinfo">
@@ -107,6 +120,39 @@
 
   <!-- Módulo principal de la página -->
   <script type="module" src="js/main.js"></script>
+
+  <!-- Lógica del modal de registro -->
+  <script>
+    (function () {
+      const backdrop  = document.getElementById('registro-modal');
+      const btnClose  = document.getElementById('btn-close-registro-modal');
+      const btnOpen   = document.getElementById('btn-open-registro-modal');
+      const btnHero   = document.getElementById('btn-registro');
+
+      function openModal() {
+        backdrop.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() { btnClose.focus(); }, 50);
+      }
+
+      function closeModal() {
+        backdrop.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      if (btnOpen)  btnOpen.addEventListener('click', openModal);
+      if (btnHero)  btnHero.addEventListener('click', openModal);
+      if (btnClose) btnClose.addEventListener('click', closeModal);
+
+      backdrop.addEventListener('click', function (e) {
+        if (e.target === backdrop) closeModal();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !backdrop.hidden) closeModal();
+      });
+    })();
+  </script>
 
 </body>
 </html>
