@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Avatar genérico de usuario">
+  <title>Avatar de usuario</title>
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="100" fill="#d1d5db"/>
+  <!-- Cabeza del avatar -->
+  <circle cx="100" cy="78" r="32" fill="#9ca3af"/>
+  <!-- Cuerpo del avatar -->
+  <ellipse cx="100" cy="155" rx="48" ry="38" fill="#9ca3af"/>
+  <!-- Máscara circular para recortar el cuerpo -->
+  <circle cx="100" cy="100" r="100" fill="none" stroke="#d1d5db" stroke-width="0"/>
+  <clipPath id="circle-clip">
+    <circle cx="100" cy="100" r="100"/>
+  </clipPath>
+  <g clip-path="url(#circle-clip)">
+    <!-- Fondo circular (repetido dentro del clip) -->
+    <circle cx="100" cy="100" r="100" fill="#d1d5db"/>
+    <!-- Cabeza -->
+    <circle cx="100" cy="78" r="32" fill="#9ca3af"/>
+    <!-- Cuerpo -->
+    <ellipse cx="100" cy="160" rx="52" ry="42" fill="#9ca3af"/>
+  </g>
+</svg>

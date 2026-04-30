@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargar datos de prueba</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; }
+    button { background: #1a3a5c; color: white; border: none; padding: 14px 28px;
+             font-size: 16px; border-radius: 8px; cursor: pointer; margin-top: 16px; }
+    button:hover { background: #0f2540; }
+    button:disabled { background: #999; cursor: not-allowed; }
+    #log { margin-top: 20px; background: #f4f4f4; padding: 16px; border-radius: 8px;
+           font-family: monospace; font-size: 13px; white-space: pre-wrap; max-height: 400px;
+           overflow-y: auto; }
+    .ok  { color: #28a745; }
+    .err { color: #dc3545; }
+    .info { color: #1a3a5c; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🌱 Cargar datos de prueba</h1>
+  <p>Este script carga datos de ejemplo en tu Firestore para que el sitio se vea completo.
+     Ejecútalo <strong>una sola vez</strong>.</p>
+  <button id="btn">Cargar datos de prueba</button>
+  <div id="log">Presiona el botón para comenzar...</div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {
+  getFirestore, doc, setDoc, collection, addDoc
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyBCOZvB6uM9fvZ_jkC5NEGg-gDN0c22PNs',
+  authDomain: 'school-d737a.firebaseapp.com',
+  projectId: 'school-d737a',
+  storageBucket: 'school-d737a.firebasestorage.app',
+  messagingSenderId: '1081779156041',
+  appId: '1:1081779156041:web:6e893fa594797826e9bb98',
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const logEl = document.getElementById('log');
+
+function log(msg, type = '') {
+  logEl.innerHTML += `<span class="${type}">${msg}</span>\n`;
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+// Imágenes de Unsplash (públicas, sin registro)
+const IMGS = {
+  escuela1: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1280&q=80',
+  escuela2: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1280&q=80',
+  escuela3: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1280&q=80',
+  escuela4: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1280&q=80',
+  escuela5: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1280&q=80',
+  maestro1: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&q=80',
+  maestro2: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+  maestro3: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&q=80',
+  maestro4: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
+  scroll1:  'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80',
+  scroll2:  'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80',
+  scroll3:  'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=600&q=80',
+  scroll4:  'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80',
+  scroll5:  'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=600&q=80',
+  scroll6:  'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80',
+};
+
+document.getElementById('btn').addEventListener('click', async () => {
+  const btn = document.getElementById('btn');
+  btn.disabled = true;
+  logEl.innerHTML = '';
+
+  try {
+    // ── 1. Contenido del sitio ──────────────────────────────────────────────
+    log('\n📸 CARRUSEL PRINCIPAL', 'info');
+    await setDoc(doc(db, 'contenido_sitio', 'carrusel'), {
+      imagenes: [
+        { url: IMGS.escuela1, alt: 'Estudiantes en el aula', orden: 0 },
+        { url: IMGS.escuela2, alt: 'Campus universitario', orden: 1 },
+        { url: IMGS.escuela3, alt: 'Biblioteca escolar', orden: 2 },
+        { url: IMGS.escuela4, alt: 'Salón de clases moderno', orden: 3 },
+        { url: IMGS.escuela5, alt: 'Estudiantes colaborando', orden: 4 },
+      ]
+    });
+    log('✓ Carrusel cargado (5 imágenes)', 'ok');
+
+    log('\n🖼️  SCROLL HORIZONTAL', 'info');
+    await setDoc(doc(db, 'contenido_sitio', 'scroll_horizontal'), {
+      imagenes: [
+        { url: IMGS.scroll1, alt: 'Libros y estudio', orden: 0 },
+        { url: IMGS.scroll2, alt: 'Clase en progreso', orden: 1 },
+        { url: IMGS.scroll3, alt: 'Estudiante leyendo', orden: 2 },
+        { url: IMGS.scroll4, alt: 'Biblioteca', orden: 3 },
+        { url: IMGS.scroll5, alt: 'Actividades escolares', orden: 4 },
+        { url: IMGS.scroll6, alt: 'Laboratorio', orden: 5 },
+      ]
+    });
+    log('✓ Scroll horizontal cargado (6 imágenes)', 'ok');
+
+    log('\n👋 SECCIÓN BIENVENIDA', 'info');
+    await setDoc(doc(db, 'contenido_sitio', 'bienvenida'), {
+      titulo: 'Bienvenidos a Nuestra Escuela',
+      subtitulo: 'Formando líderes del futuro con excelencia académica',
+      parrafo: 'Somos una institución educativa comprometida con el desarrollo integral de nuestros alumnos. Ofrecemos programas académicos de calidad impartidos por maestros altamente capacitados, en un ambiente de aprendizaje moderno y estimulante. Únete a nuestra comunidad y descubre todo lo que tenemos para ti.',
+    });
+    log('✓ Sección bienvenida cargada', 'ok');
+
+    log('\n🦶 FOOTER', 'info');
+    await setDoc(doc(db, 'contenido_sitio', 'footer'), {
+      nombreEscuela: 'Instituto Educativo Ejemplo',
+      descripcion: 'Formando el futuro con excelencia académica desde 1990.',
+      direccion: 'Av. Educación 123, Col. Centro, Ciudad de México',
+      telefono: '+52 (55) 1234-5678',
+      email: 'contacto@escuela.edu.mx',
+      redesSociales: {
+        facebook: 'https://facebook.com',
+        instagram: 'https://instagram.com',
+        twitter: 'https://twitter.com',
+        youtube: 'https://youtube.com',
+      },
+    });
+    log('✓ Footer cargado', 'ok');
+
+    // ── 2. Secciones académicas ─────────────────────────────────────────────
+    log('\n📚 SECCIONES ACADÉMICAS', 'info');
+    const secciones = [
+      { nombre: 'Matemáticas', descripcion: 'Álgebra, cálculo, geometría y estadística aplicada.', icono: '' },
+      { nombre: 'Ciencias', descripcion: 'Física, química y biología con laboratorio práctico.', icono: '' },
+      { nombre: 'Humanidades', descripcion: 'Historia, filosofía, literatura y arte.', icono: '' },
+      { nombre: 'Tecnología', descripcion: 'Programación, robótica y diseño digital.', icono: '' },
+      { nombre: 'Idiomas', descripcion: 'Inglés, francés y otros idiomas con certificación.', icono: '' },
+      { nombre: 'Deportes', descripcion: 'Educación física, fútbol, basquetbol y natación.', icono: '' },
+    ];
+    const seccionIds = [];
+    for (const s of secciones) {
+      const ref = await addDoc(collection(db, 'secciones'), s);
+      seccionIds.push(ref.id);
+      log(`  ✓ ${s.nombre}`, 'ok');
+    }
+
+    // ── 3. Maestros ─────────────────────────────────────────────────────────
+    log('\n👨‍🏫 MAESTROS', 'info');
+    const maestros = [
+      { nombre: 'Dr. Carlos Mendoza', email: 'cmendoza@escuela.edu.mx', especialidad: 'Matemáticas', descripcion: 'Doctor en Matemáticas Aplicadas con 15 años de experiencia docente.', fotoPerfil: IMGS.maestro1, cursosAsignados: [] },
+      { nombre: 'Mtra. Ana García', email: 'agarcia@escuela.edu.mx', especialidad: 'Ciencias', descripcion: 'Maestra en Biología Molecular, apasionada por la investigación científica.', fotoPerfil: IMGS.maestro2, cursosAsignados: [] },
+      { nombre: 'Lic. Roberto Torres', email: 'rtorres@escuela.edu.mx', especialidad: 'Tecnología', descripcion: 'Ingeniero en Sistemas con experiencia en desarrollo de software y robótica.', fotoPerfil: IMGS.maestro3, cursosAsignados: [] },
+      { nombre: 'Dra. María López', email: 'mlopez@escuela.edu.mx', especialidad: 'Idiomas', descripcion: 'Doctora en Lingüística, certificada por Cambridge y Alliance Française.', fotoPerfil: IMGS.maestro4, cursosAsignados: [] },
+    ];
+    const maestroIds = [];
+    for (const m of maestros) {
+      const ref = await addDoc(collection(db, 'maestros'), m);
+      maestroIds.push(ref.id);
+      log(`  ✓ ${m.nombre}`, 'ok');
+    }
+
+    // ── 4. Cursos ───────────────────────────────────────────────────────────
+    log('\n📋 CURSOS', 'info');
+    const cursos = [
+      { nombre: 'Álgebra Avanzada', descripcion: 'Ecuaciones, matrices y vectores.', maestroId: maestroIds[0], seccionId: seccionIds[0], cupoMaximo: 30, alumnosInscritos: 0 },
+      { nombre: 'Cálculo Diferencial', descripcion: 'Límites, derivadas e integrales.', maestroId: maestroIds[0], seccionId: seccionIds[0], cupoMaximo: 25, alumnosInscritos: 0 },
+      { nombre: 'Biología Celular', descripcion: 'Estructura y función de la célula.', maestroId: maestroIds[1], seccionId: seccionIds[1], cupoMaximo: 20, alumnosInscritos: 0 },
+      { nombre: 'Química Orgánica', descripcion: 'Compuestos del carbono y reacciones.', maestroId: maestroIds[1], seccionId: seccionIds[1], cupoMaximo: 20, alumnosInscritos: 0 },
+      { nombre: 'Programación Web', descripcion: 'HTML, CSS, JavaScript y frameworks modernos.', maestroId: maestroIds[2], seccionId: seccionIds[3], cupoMaximo: 25, alumnosInscritos: 0 },
+      { nombre: 'Inglés Intermedio', descripcion: 'Gramática, conversación y escritura B2.', maestroId: maestroIds[3], seccionId: seccionIds[4], cupoMaximo: 20, alumnosInscritos: 0 },
+    ];
+    for (const c of cursos) {
+      await addDoc(collection(db, 'cursos'), c);
+      log(`  ✓ ${c.nombre}`, 'ok');
+    }
+
+    // ── 5. Videos (YouTube) ─────────────────────────────────────────────────
+    log('\n🎬 VIDEOS', 'info');
+    const videos = [
+      { titulo: 'Bienvenida a nuestra escuela', descripcion: 'Tour virtual por nuestras instalaciones.', tipo: 'youtube', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', activo: true, orden: 0 },
+      { titulo: 'Día del estudiante 2024', descripcion: 'Celebración anual con actividades culturales.', tipo: 'youtube', url: 'https://www.youtube.com/embed/9bZkp7q19f0', activo: true, orden: 1 },
+      { titulo: 'Laboratorio de ciencias', descripcion: 'Experimentos y descubrimientos.', tipo: 'youtube', url: 'https://www.youtube.com/embed/jNQXAC9IVRw', activo: true, orden: 2 },
+      { titulo: 'Clase de programación', descripcion: 'Introducción al desarrollo web.', tipo: 'youtube', url: 'https://www.youtube.com/embed/ysEN5RaKOlA', activo: true, orden: 3 },
+      { titulo: 'Torneo deportivo', descripcion: 'Competencias inter-escolares.', tipo: 'youtube', url: 'https://www.youtube.com/embed/M7lc1UVf-VE', activo: true, orden: 4 },
+      { titulo: 'Graduación 2024', descripcion: 'Ceremonia de graduación de nuestra generación.', tipo: 'youtube', url: 'https://www.youtube.com/embed/kJQP7kiw5Fk', activo: true, orden: 5 },
+    ];
+    for (const v of videos) {
+      await addDoc(collection(db, 'videos'), v);
+      log(`  ✓ ${v.titulo}`, 'ok');
+    }
+
+    // ── 6. Usuario administrador ────────────────────────────────────────────
+    log('\n🔐 USUARIO ADMINISTRADOR', 'info');
+    await setDoc(doc(db, 'usuarios', 'nEKqVmvJCvP4X5pCEqgUXv6We1u1'), {
+      nombre: 'Admin Principal',
+      email: 'admin@escuela.edu.mx',
+      rol: 'admin',
+      estado: 'activo',
+    });
+    log('✓ Documento de administrador creado (UID: nEKqVmvJCvP4X5pCEqgUXv6We1u1)', 'ok');
+
+    log('\n✅ ¡Todos los datos de prueba fueron cargados exitosamente!', 'ok');
+    log('👉 Ahora ve a http://localhost:50611/login.html e inicia sesión', 'info');
+    log('👉 O recarga http://localhost:50611 para ver el sitio con datos', 'info');
+
+  } catch (err) {
+    log(`\n❌ Error: ${err.message}`, 'err');
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

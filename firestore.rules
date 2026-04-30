@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Colecciones de lectura pública
+    match /cursos/{id}          { allow read: if true; allow write: if isAdmin(); }
+    match /secciones/{id}       { allow read: if true; allow write: if isAdmin(); }
+    match /maestros/{id}        { allow read: if true; allow write: if isAdmin(); }
+    match /videos/{id}          { allow read: if true; allow write: if isAdmin(); }
+    match /contenido_sitio/{id} { allow read: if true; allow write: if isAdmin(); }
+
+    // Formulario público de registro — cualquiera puede crear, solo admin puede leer/editar/eliminar
+    match /solicitudes/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Solo admin
+    match /alumnos/{id}       { allow read, write: if isAdmin(); }
+    match /inscripciones/{id} { allow read, write: if isAdmin(); }
+
+    // Usuarios — cada usuario puede leer su propio documento; solo admin puede escribir
+    match /usuarios/{id} {
+      allow read: if isOwner(id) || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // -----------------------------------------------------------------------
+    // Funciones auxiliares
+    // -----------------------------------------------------------------------
+
+    function isAdmin() {
+      return request.auth != null &&
+             get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == 'admin';
+    }
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

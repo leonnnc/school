@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de administración de la escuela. Acceso exclusivo para administradores.">
+  <title>Escuela — Panel de Administración</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/admin.css">
+</head>
+<body class="admin-page">
+
+  <!-- Barra de navegación superior -->
+  <header class="admin-topbar" role="banner">
+    <div class="admin-topbar-brand">
+      <span class="admin-topbar-title">Panel de Administración</span>
+    </div>
+    <div class="admin-topbar-user" id="admin-user-info" aria-live="polite">
+      <!-- Renderizado dinámico: email y rol del usuario autenticado -->
+    </div>
+    <nav class="admin-topbar-actions" aria-label="Acciones de usuario">
+      <button id="btn-signout" class="btn btn-secondary btn-sm" type="button">
+        Cerrar sesión
+      </button>
+    </nav>
+  </header>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar de navegación -->
+    <nav class="admin-sidebar" aria-label="Navegación del panel de administración">
+      <ul class="admin-nav-list" role="list">
+        <li>
+          <button class="admin-nav-item active" data-section="alumnos" type="button" aria-current="page">
+            Alumnos
+          </button>
+        </li>
+        <li>
+          <button class="admin-nav-item" data-section="maestros" type="button">
+            Maestros
+          </button>
+        </li>
+        <li>
+          <button class="admin-nav-item" data-section="cursos" type="button">
+            Cursos
+          </button>
+        </li>
+        <li>
+          <button class="admin-nav-item" data-section="inscripciones" type="button">
+            Inscripciones
+          </button>
+        </li>
+        <li>
+          <button class="admin-nav-item" data-section="administradores" type="button">
+            Administradores
+          </button>
+        </li>
+        <li>
+          <button class="admin-nav-item" data-section="contenido" type="button">
+            Contenido del Sitio
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Área de contenido principal -->
+    <main class="admin-content" id="admin-content" role="main" aria-live="polite">
+      <!-- Renderizado dinámico por admin-main.js según la sección activa -->
+      <div class="admin-loading">
+        <p>Cargando panel de administración...</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Módulo principal del panel de administración -->
+  <script type="module" src="js/admin/admin-main.js"></script>
+
+</body>
+</html>

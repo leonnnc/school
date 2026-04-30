@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Imagen de placeholder del carrusel">
+  <title>Placeholder Carrusel</title>
+  <!-- Fondo gris -->
+  <rect width="1920" height="1080" fill="#cccccc"/>
+  <!-- Patrón de cuadrícula sutil -->
+  <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+    <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#bbbbbb" stroke-width="1"/>
+  </pattern>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <!-- Ícono de imagen -->
+  <g transform="translate(910, 460)">
+    <rect x="-50" y="-40" width="100" height="80" rx="8" fill="none" stroke="#999999" stroke-width="4"/>
+    <circle cx="-15" cy="-10" r="12" fill="#999999"/>
+    <path d="M -50 20 L -20 -5 L 10 20 L 30 5 L 50 20" fill="none" stroke="#999999" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+  <!-- Texto "Escuela" centrado -->
+  <text
+    x="960"
+    y="590"
+    font-family="'Segoe UI', Roboto, Arial, sans-serif"
+    font-size="64"
+    font-weight="700"
+    fill="#888888"
+    text-anchor="middle"
+    dominant-baseline="middle"
+  >Escuela</text>
+  <!-- Subtexto -->
+  <text
+    x="960"
+    y="660"
+    font-family="'Segoe UI', Roboto, Arial, sans-serif"
+    font-size="28"
+    font-weight="400"
+    fill="#aaaaaa"
+    text-anchor="middle"
+    dominant-baseline="middle"
+  >Imagen del carrusel</text>
+</svg>

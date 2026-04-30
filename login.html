@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inicio de sesión para administradores y maestros de la escuela.">
+  <title>Escuela — Iniciar Sesión</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="login-page">
+
+  <main class="login-main" role="main">
+    <div class="login-container">
+
+      <header class="login-header">
+        <h1 class="login-title">Iniciar Sesión</h1>
+        <p class="login-subtitle">Accede a tu panel de administración</p>
+      </header>
+
+      <form id="login-form" class="login-form" novalidate aria-label="Formulario de inicio de sesión">
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            placeholder="correo@ejemplo.com"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-describedby="email-error"
+          >
+          <span id="email-error" class="form-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="Tu contraseña"
+            autocomplete="current-password"
+            required
+            aria-required="true"
+            aria-describedby="password-error"
+          >
+          <span id="password-error" class="form-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- Mensaje de error general (no revela cuál campo es incorrecto) -->
+        <div id="login-error" class="form-error-general hidden" role="alert" aria-live="assertive"></div>
+
+        <button type="submit" id="btn-login" class="btn btn-primary btn-full">
+          Iniciar Sesión
+        </button>
+
+      </form>
+
+      <p class="login-back">
+        <a href="index.html" class="link-back">← Volver al sitio</a>
+      </p>
+
+    </div>
+  </main>
+
+  <!-- Módulo de autenticación -->
+  <script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

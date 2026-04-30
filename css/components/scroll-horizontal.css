@@ -1,0 +1,53 @@
+/* ==========================================================================
+   scroll-horizontal.css — Scroll horizontal automático de fotos
+   Sitio Web Escolar
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Sección contenedora
+   -------------------------------------------------------------------------- */
+.scroll-horizontal-section {
+  overflow: hidden;
+  background-color: var(--color-bg-muted);
+  padding-block: var(--spacing-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Track — fila de imágenes con animación continua
+   -------------------------------------------------------------------------- */
+.scroll-horizontal-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+  will-change: transform;
+}
+
+/* Pausar al hacer hover (Req. 3.3, 3.4) */
+.scroll-horizontal-track:hover {
+  animation-play-state: paused;
+}
+
+/* --------------------------------------------------------------------------
+   Imágenes individuales
+   -------------------------------------------------------------------------- */
+.scroll-horizontal-img {
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 8px;
+  border-radius: var(--border-radius-sm);
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Keyframes — desplazamiento de 0 a -50% (las imágenes se duplican)
+   -------------------------------------------------------------------------- */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

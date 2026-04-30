@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel del maestro. Acceso exclusivo para maestros de la escuela.">
+  <title>Escuela — Panel del Maestro</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/maestro.css">
+</head>
+<body class="maestro-page">
+
+  <!-- Barra de navegación superior -->
+  <header class="maestro-topbar" role="banner">
+    <div class="maestro-topbar-brand">
+      <span class="maestro-topbar-title">Panel del Maestro</span>
+    </div>
+    <div class="maestro-topbar-user" id="maestro-user-info" aria-live="polite">
+      <!-- Renderizado dinámico: nombre y email del maestro autenticado -->
+    </div>
+    <nav class="maestro-topbar-actions" aria-label="Acciones de usuario">
+      <button id="btn-signout" class="btn btn-secondary btn-sm" type="button">
+        Cerrar sesión
+      </button>
+    </nav>
+  </header>
+
+  <div class="maestro-layout">
+
+    <!-- Sidebar de navegación -->
+    <nav class="maestro-sidebar" aria-label="Navegación del panel del maestro">
+      <ul class="maestro-nav-list" role="list">
+        <li>
+          <button class="maestro-nav-item active" data-section="perfil" type="button" aria-current="page">
+            Mi Perfil
+          </button>
+        </li>
+        <li>
+          <button class="maestro-nav-item" data-section="secciones" type="button">
+            Mis Secciones
+          </button>
+        </li>
+        <li>
+          <button class="maestro-nav-item" data-section="cursos" type="button">
+            Mis Cursos
+          </button>
+        </li>
+        <li>
+          <button class="maestro-nav-item" data-section="alumnos" type="button">
+            Mis Alumnos
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Área de contenido principal -->
+    <main class="maestro-content" id="maestro-content" role="main" aria-live="polite">
+      <!-- Renderizado dinámico por maestro-main.js según la sección activa -->
+      <div class="maestro-loading">
+        <p>Cargando panel del maestro...</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Módulo principal del panel del maestro -->
+  <script type="module" src="js/maestro/maestro-main.js"></script>
+
+</body>
+</html>

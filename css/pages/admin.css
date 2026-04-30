@@ -1,0 +1,395 @@
+/* ==========================================================================
+   admin.css — Estilos del Panel de Administración
+   Sitio Web Escolar
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Página del panel admin
+   -------------------------------------------------------------------------- */
+.admin-page {
+  background-color: var(--color-bg-muted);
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   Barra superior fija
+   -------------------------------------------------------------------------- */
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+  height: 56px;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  box-shadow: var(--shadow-md);
+  gap: var(--spacing-md);
+}
+
+.admin-topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.admin-topbar-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-inverse);
+  white-space: nowrap;
+}
+
+.admin-topbar-user {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+.admin-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.admin-topbar-actions .btn {
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-text-inverse);
+  background-color: transparent;
+}
+
+.admin-topbar-actions .btn:hover,
+.admin-topbar-actions .btn:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-inverse);
+}
+
+/* --------------------------------------------------------------------------
+   Layout principal — sidebar + contenido
+   -------------------------------------------------------------------------- */
+.admin-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 56px);
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar
+   -------------------------------------------------------------------------- */
+.admin-sidebar {
+  background-color: var(--color-bg-dark);
+  padding: var(--spacing-lg) 0;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.admin-sidebar-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: rgba(248, 249, 250, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.admin-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Botón de navegación del sidebar */
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: rgba(248, 249, 250, 0.75);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.admin-nav-item:hover,
+.admin-nav-item:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-light);
+}
+
+.admin-nav-item:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: -2px;
+}
+
+.admin-nav-item.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-semibold);
+}
+
+.admin-nav-item-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   Área de contenido principal
+   -------------------------------------------------------------------------- */
+.admin-content {
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+  min-width: 0; /* Evitar overflow en grid */
+}
+
+.admin-content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.admin-content-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.admin-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Campo de búsqueda
+   -------------------------------------------------------------------------- */
+.admin-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-search-icon {
+  position: absolute;
+  left: var(--spacing-sm);
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.admin-search-input {
+  width: 280px;
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) calc(var(--spacing-sm) + 18px + var(--spacing-xs));
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background-color: var(--color-bg-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.15);
+}
+
+.admin-search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Tabla del admin
+   -------------------------------------------------------------------------- */
+.admin-table-wrapper {
+  background-color: var(--color-bg-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+/* Encabezados */
+.admin-table th {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-muted);
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Celdas */
+.admin-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+/* Filas alternadas */
+.admin-table tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+/* Hover en filas */
+.admin-table tbody tr:hover {
+  background-color: #f0f4f8;
+}
+
+/* Última fila sin borde inferior */
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Acciones en la tabla */
+.admin-table-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Panel de formulario CRUD (lateral o modal)
+   -------------------------------------------------------------------------- */
+.admin-form-panel {
+  background-color: var(--color-bg-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--color-border);
+}
+
+.admin-form-panel-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-form-panel-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Panel lateral (drawer) */
+.admin-form-drawer {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  width: 420px;
+  height: calc(100vh - 56px);
+  background-color: var(--color-bg-white);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-modal);
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+}
+
+.admin-form-drawer.open {
+  transform: translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   Badges de estado
+   -------------------------------------------------------------------------- */
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.admin-badge-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.admin-badge-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.admin-badge-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.admin-badge-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* --------------------------------------------------------------------------
+   Sección vacía
+   -------------------------------------------------------------------------- */
+.admin-empty-state {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+.admin-empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.4;
+}
+
+.admin-empty-state-text {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.admin-empty-state-subtext {
+  font-size: var(--font-size-sm);
+}

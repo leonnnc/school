@@ -1,0 +1,69 @@
+/* ==========================================================================
+   welcome.css — Estilos de la sección de bienvenida
+   Sitio Web Escolar
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Sección de bienvenida
+   -------------------------------------------------------------------------- */
+.welcome-section {
+  padding-block: var(--spacing-3xl);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+}
+
+.welcome-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  max-width: 800px;
+}
+
+/* --------------------------------------------------------------------------
+   Título principal
+   -------------------------------------------------------------------------- */
+.welcome-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: var(--line-height-heading);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Subtítulo
+   -------------------------------------------------------------------------- */
+.welcome-subtitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-secondary-dark);
+  line-height: var(--line-height-heading);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Párrafo de presentación
+   -------------------------------------------------------------------------- */
+.welcome-paragraph {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+  max-width: 680px;
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Contenedor del botón CTA
+   -------------------------------------------------------------------------- */
+.welcome-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — una columna centrada en móvil (< 768px)
+   Definido en responsive.css para centralizar los breakpoints
+   -------------------------------------------------------------------------- */

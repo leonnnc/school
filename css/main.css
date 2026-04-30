@@ -1,0 +1,558 @@
+/* ==========================================================================
+   main.css — Estilos globales, variables CSS y reset base
+   Sitio Web Escolar
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables CSS Globales
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta de colores */
+  --color-primary: #1a3a5c;        /* Azul oscuro — color principal */
+  --color-primary-dark: #0f2540;   /* Azul más oscuro — hover/active */
+  --color-primary-light: #2a5a8c;  /* Azul claro — variante */
+  --color-secondary: #f5a623;      /* Dorado/amarillo — color secundario */
+  --color-secondary-dark: #d4891a; /* Dorado oscuro — hover/active */
+  --color-secondary-light: #f7bc5a;/* Dorado claro — variante */
+
+  --color-bg: #f8f9fa;             /* Fondo claro principal */
+  --color-bg-white: #ffffff;       /* Blanco puro */
+  --color-bg-dark: #1a1a2e;        /* Fondo oscuro (footer, etc.) */
+  --color-bg-muted: #e9ecef;       /* Fondo gris suave */
+
+  --color-text: #212529;           /* Texto oscuro principal */
+  --color-text-muted: #6c757d;     /* Texto secundario/apagado */
+  --color-text-light: #f8f9fa;     /* Texto claro (sobre fondos oscuros) */
+  --color-text-inverse: #ffffff;   /* Texto blanco */
+
+  --color-border: #dee2e6;         /* Borde estándar */
+  --color-border-focus: #1a3a5c;   /* Borde en foco (accesibilidad) */
+
+  --color-success: #28a745;        /* Verde — éxito */
+  --color-error: #dc3545;          /* Rojo — error */
+  --color-warning: #ffc107;        /* Amarillo — advertencia */
+  --color-info: #17a2b8;           /* Azul claro — información */
+
+  /* Tipografía */
+  --font-family-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-heading: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-base: 1rem;          /* 16px */
+  --font-size-sm: 0.875rem;        /* 14px */
+  --font-size-lg: 1.125rem;        /* 18px */
+  --font-size-xl: 1.25rem;         /* 20px */
+  --font-size-2xl: 1.5rem;         /* 24px */
+  --font-size-3xl: 1.875rem;       /* 30px */
+  --font-size-4xl: 2.25rem;        /* 36px */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+
+  /* Espaciado */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+
+  /* Bordes y radios */
+  --border-radius-sm: 0.25rem;  /* 4px */
+  --border-radius-md: 0.5rem;   /* 8px */
+  --border-radius-lg: 1rem;     /* 16px */
+  --border-radius-full: 9999px; /* Circular */
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+  /* Transiciones */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 400ms ease-in-out;
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset / Normalize Base
+   -------------------------------------------------------------------------- */
+
+/* Box-sizing universal */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Eliminar márgenes y padding por defecto */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Scroll suave global */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Imágenes responsivas */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inputs heredan tipografía */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Evitar overflow de texto largo */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Listas sin estilo por defecto en nav */
+ul,
+ol {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Estilos Base del Body
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   4. Headings
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+/* --------------------------------------------------------------------------
+   5. Links
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   6. Clase .container
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+/* --------------------------------------------------------------------------
+   7. Botones base
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-text-inverse);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  color: var(--color-text);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   8. Sección genérica
+   -------------------------------------------------------------------------- */
+.section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* --------------------------------------------------------------------------
+   9. Clases de utilidad
+   -------------------------------------------------------------------------- */
+
+/* Ocultar elemento completamente */
+.hidden {
+  display: none !important;
+}
+
+/* Ocultar visualmente pero mantener accesible para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Centrar texto */
+.text-center {
+  text-align: center;
+}
+
+/* Texto a la derecha */
+.text-right {
+  text-align: right;
+}
+
+/* Texto muted */
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Espaciado */
+.mt-md { margin-top: var(--spacing-md); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* --------------------------------------------------------------------------
+   10. Toast notifications (base — lógica en ui-helpers.js)
+   -------------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  max-width: 360px;
+  pointer-events: auto;
+  animation: toast-in var(--transition-base) ease-out;
+}
+
+.toast-success {
+  background-color: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.toast-error {
+  background-color: var(--color-error);
+  color: var(--color-text-inverse);
+}
+
+.toast-info {
+  background-color: var(--color-info);
+  color: var(--color-text-inverse);
+}
+
+.toast-warning {
+  background-color: var(--color-warning);
+  color: var(--color-text);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Modal base (lógica en ui-helpers.js)
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal-backdrop);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+.modal {
+  background-color: var(--color-bg-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: var(--spacing-xl);
+  max-width: 480px;
+  width: 100%;
+  z-index: var(--z-modal);
+}
+
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+.modal-message {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-base);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
+   12. Spinner de carga (lógica en ui-helpers.js)
+   -------------------------------------------------------------------------- */
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid var(--color-bg-muted);
+  border-top-color: var(--color-primary);
+  border-radius: var(--border-radius-full);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Formularios base
+   -------------------------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.15);
+}
+
+.form-input.error,
+.form-select.error,
+.form-textarea.error {
+  border-color: var(--color-error);
+}
+
+.form-error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  min-height: 1.25rem;
+}
+
+.form-error-general {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: #fde8ea;
+  border: 1px solid var(--color-error);
+  border-radius: var(--border-radius-md);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}

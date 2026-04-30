@@ -1,0 +1,11 @@
+// Firebase Storage no está habilitado en este proyecto (plan gratuito Spark).
+// Este archivo se mantiene como referencia para cuando se active Storage.
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

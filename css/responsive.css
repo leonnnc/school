@@ -1,0 +1,124 @@
+/* ==========================================================================
+   responsive.css — Media queries centralizadas
+   Sitio Web Escolar
+   Breakpoints: 576px, 768px, 1024px, 1280px
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Breakpoint: < 576px (móvil pequeño)
+   -------------------------------------------------------------------------- */
+@media (max-width: 575.98px) {
+  /* Container */
+  .container {
+    padding-inline: var(--spacing-sm);
+  }
+
+  /* Teachers grid — 1 columna */
+  .teachers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: 576px – 767px (móvil grande)
+   -------------------------------------------------------------------------- */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Teachers grid — 2 columnas */
+  .teachers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: < 768px (móvil)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  /* Container */
+  .container {
+    padding-inline: var(--spacing-sm);
+  }
+
+  /* Sections grid — 1 columna */
+  .sections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Videos grid — 1 columna */
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Welcome section — una columna centrada */
+  .welcome-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .welcome-section .welcome-actions {
+    justify-content: center;
+  }
+
+  /* Footer grid — una columna */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Registration form — ancho completo */
+  .registration-form {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-form .form-submit-col {
+    grid-column: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: 768px – 1023px (tablet)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  /* Sections grid — 2 columnas */
+  .sections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Teachers grid — 2 columnas */
+  .teachers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Videos grid — 2 columnas */
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: ≥ 1024px (desktop)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  /* Sections grid — 3 columnas */
+  .sections-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Teachers grid — 4 columnas */
+  .teachers-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Videos grid — 3 columnas */
+  .videos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: ≥ 1280px (desktop grande)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1280px) {
+  .container {
+    padding-inline: var(--spacing-xl);
+  }
+}
