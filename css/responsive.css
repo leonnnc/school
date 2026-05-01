@@ -8,14 +8,23 @@
    Breakpoint: < 576px (móvil pequeño)
    -------------------------------------------------------------------------- */
 @media (max-width: 575.98px) {
-  /* Container */
   .container {
     padding-inline: var(--spacing-sm);
   }
 
-  /* Teachers grid — 1 columna */
+  /* Teachers grid — 2 columnas en móvil pequeño */
   .teachers-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Sections grid — 2 columnas en móvil pequeño */
+  .sections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Videos grid — 2 columnas en móvil pequeño */
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -23,8 +32,15 @@
    Breakpoint: 576px – 767px (móvil grande)
    -------------------------------------------------------------------------- */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  /* Teachers grid — 2 columnas */
   .teachers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .videos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -33,19 +49,8 @@
    Breakpoint: < 768px (móvil)
    -------------------------------------------------------------------------- */
 @media (max-width: 767.98px) {
-  /* Container */
   .container {
     padding-inline: var(--spacing-sm);
-  }
-
-  /* Sections grid — 1 columna */
-  .sections-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Videos grid — 1 columna */
-  .videos-grid {
-    grid-template-columns: 1fr;
   }
 
   /* Welcome section — una columna centrada */
