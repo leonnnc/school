@@ -305,6 +305,22 @@ a:focus-visible {
   margin-bottom: var(--spacing-2xl);
 }
 
+/* Padding vertical estándar para todas las secciones de la página principal */
+.sections-catalog,
+.teachers-directory,
+.video-gallery,
+.registration-section,
+.scroll-horizontal-section {
+  padding-block: 5rem; /* ~80px arriba y abajo */
+}
+
+/* Alternar fondo para separar visualmente las secciones */
+.sections-catalog   { background-color: var(--color-bg-white); }
+.scroll-horizontal-section { background-color: var(--color-bg-muted); }
+.teachers-directory { background-color: var(--color-bg-white); }
+.video-gallery      { background-color: var(--color-bg-muted); }
+.registration-section { background-color: var(--color-bg-white); }
+
 /* --------------------------------------------------------------------------
    9. Clases de utilidad
    -------------------------------------------------------------------------- */
